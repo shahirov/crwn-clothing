@@ -1,25 +1,12 @@
 import React from 'react'
 
-import {
-  Wrapper,
-  DirectoryMenu,
-  MenuItem,
-  ItemContent,
-  ItemSubtitle,
-  ItemTitle
-} from './homepage.styles'
+import { Wrapper } from './homepage.styles'
+import DirectoryMenu from '../../components/directory-menu/directory-menu'
 
 const HomePage = () => {
   return (
     <Wrapper>
-      <DirectoryMenu>
-        <MenuItem>
-          <ItemContent>
-            <ItemTitle>Hats</ItemTitle>
-            <ItemSubtitle>Shop now</ItemSubtitle>
-          </ItemContent>
-        </MenuItem>
-      </DirectoryMenu>
+      <DirectoryMenu />
     </Wrapper>
   )
 }
