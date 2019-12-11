@@ -4,7 +4,7 @@ type ImageProps = {
   imageUrl: string
 }
 
-export const CollectionItemWrapper = styled.div`
+export const Wrapper = styled.div`
   width: 22%;
   display: flex;
   flex-direction: column;

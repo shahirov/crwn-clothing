@@ -1,5 +1,5 @@
 import React from 'react'
-import { CollectionItemWrapper, Image, Footer, Name, Price } from './collection-item.styles'
+import { Wrapper, Image, Footer, Name, Price } from './collection-item.styles'
 
 type CollectionItemProps = {
   name: string
@@ -9,13 +9,13 @@ type CollectionItemProps = {
 
 const CollectionItem: React.FC<CollectionItemProps> = ({ name, price, imageUrl }) => {
   return (
-    <CollectionItemWrapper>
+    <Wrapper>
       <Image imageUrl={imageUrl} />
       <Footer>
         <Name>{name}</Name>
         <Price>${price}</Price>
       </Footer>
-    </CollectionItemWrapper>
+    </Wrapper>
   )
 }
 export default CollectionItem
