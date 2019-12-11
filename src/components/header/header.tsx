@@ -10,8 +10,9 @@ const Header = () => {
         <Logo />
       </LogoContainer>
       <Options>
-        <Option to="/shop">Shop</Option>
-        <Option to="/signin">Sign in</Option>
+        <Option to="/shop">SHOP</Option>
+        <Option to="/signin">SIGN IN</Option>
+        <Option to="/signup">SIGN UP</Option>
       </Options>
     </Wrapper>
   )
