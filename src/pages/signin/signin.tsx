@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin.styles'
 import FormInput from '../../components/form-input/form-input'
-import { Button } from '../../components/custom-button/custom-button.styles'
+import CustomButton from '../../components/custom-button/custom-button'
 import { FirebaseContext } from '../../firebase'
 
 interface SignInFormValues {
@@ -35,18 +35,23 @@ const Signin = () => {
           <FormInput label="Email" name="email" type="email" />
           <FormInput label="Password" name="password" type="password" />
           <Buttons>
-            <Button type="submit" color="green">
+            <CustomButton type="submit" color="green" signIn>
               Sign in
-            </Button>
-            <Button type="button" color="blue" onClick={firebase.signInWithGoogle}>
+            </CustomButton>
+            <CustomButton
+              type="button"
+              color="blue"
+              signIn
+              handleClick={() => firebase.signInWithGoogle()}
+            >
               Sign in with google
-            </Button>
+            </CustomButton>
           </Buttons>
         </Form>
       </Formik>
       <Divider />
       <SignUpTitle>Don't have an account?</SignUpTitle>
-      <SignUpLink to="/signup">Sign Up</SignUpLink>
+      <SignUpLink to="/signin">Sign Up</SignUpLink>
     </Wrapper>
   )
 }

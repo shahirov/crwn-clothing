@@ -1,4 +1,4 @@
-import app from 'firebase/app'
+import app, { User } from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
@@ -19,8 +19,33 @@ class Firebase {
     this.provider.setCustomParameters({ promt: 'select_account' })
   }
 
-  async signInWithGoogle() {
+  signInWithGoogle = async () => {
     return this.auth.signInWithPopup(this.provider)
+  }
+
+  createUserProfileDocument = async (userAuth: User, metadata?: { displayName: string }) => {
+    if (!userAuth) return
+
+    const userRef = this.firestore.doc(`users/${userAuth.uid}`)
+    const snapshot = await userRef.get()
+
+    if (!snapshot.exists) {
+      const { displayName, email } = userAuth
+      const createdAt = new Date()
+
+      try {
+        await userRef.set({
+          displayName,
+          email,
+          createdAt,
+          ...metadata
+        })
+      } catch (error) {
+        console.error('Error creating user', error.message)
+      }
+    }
+
+    return userRef
   }
 }
 

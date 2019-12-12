@@ -7,6 +7,10 @@ import { FirebaseContext } from '../../firebase'
 const Header = () => {
   const { user, firebase } = useContext(FirebaseContext)
 
+  const signOutUser = () => {
+    firebase.auth.signOut()
+  }
+
   return (
     <header>
       <Navigation>
@@ -17,7 +21,7 @@ const Header = () => {
           <StyledLink to="/shop">SHOP</StyledLink>
           {user ? (
             <li>
-              <SignOutButton onClick={firebase.auth.signOut}>SIGN OUT</SignOutButton>
+              <SignOutButton onClick={signOutUser}>SIGN OUT</SignOutButton>
             </li>
           ) : (
             <>

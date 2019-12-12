@@ -1,11 +1,11 @@
 import React from 'react'
-import { User } from 'firebase'
 
 import { firebase } from './firebase'
+import { AuthUser } from '../custom-hooks'
 
 interface FirebaseContextProps {
   firebase: typeof firebase
-  user: User | null
+  user: null | AuthUser
 }
 
 export const FirebaseContext = React.createContext<FirebaseContextProps>({

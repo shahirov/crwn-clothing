@@ -14,15 +14,13 @@ const App = () => {
 
   return (
     <FirebaseContext.Provider value={{ user, firebase }}>
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={Shop} />
-          <Route path="/signin">{user ? <Redirect to="/" /> : <Signin />}</Route>
-          <Route path="/signup" component={Signup} />
-        </Switch>
-      </div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={Shop} />
+        <Route path="/signin">{user ? <Redirect to="/" /> : <Signin />}</Route>
+        <Route path="/signup" component={Signup} />
+      </Switch>
     </FirebaseContext.Provider>
   )
 }

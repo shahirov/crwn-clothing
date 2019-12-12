@@ -1,15 +1,27 @@
 import { useEffect, useState } from 'react'
-import { User } from 'firebase'
 
 import { firebase } from '../firebase'
 
+export interface AuthUser {
+  id: string
+}
+
 export const useAuth = () => {
-  const [authUser, setAuthUser] = useState<User | null>(null)
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null)
 
   useEffect(() => {
-    const unsubscribe = firebase.auth.onAuthStateChanged((user) => {
-      if (user) {
-        setAuthUser(user)
+    const unsubscribe = firebase.auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await firebase.createUserProfileDocument(userAuth)
+
+        userRef?.onSnapshot((snapshot) => {
+          setAuthUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          })
+        })
+      } else {
+        setAuthUser(userAuth)
       }
     })
 
