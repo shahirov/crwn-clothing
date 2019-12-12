@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin.styles'
 import FormInput from '../../components/form-input/form-input'
 import { Button } from '../../components/custom-button/custom-button.styles'
-import { firebase } from '../../firebase'
+import { FirebaseContext } from '../../firebase'
 
-interface FormValues {
+interface SignInFormValues {
   email: string
   password: string
 }
 
 const Signin = () => {
-  const initialValues: FormValues = { email: '', password: '' }
+  const initialValues: SignInFormValues = { email: '', password: '' }
+  const { firebase } = useContext(FirebaseContext)
 
   return (
     <Wrapper>

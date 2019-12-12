@@ -6,14 +6,14 @@ import Shop from '../pages/shop/shop'
 import Header from '../components/header/header'
 import Signup from '../pages/signup/signup'
 import Signin from '../pages/signin/signin'
-import { FirebaseContext } from '../firebase'
+import { FirebaseContext, firebase } from '../firebase'
 import { useAuth } from '../custom-hooks'
 
 const App = () => {
   const user = useAuth()
 
   return (
-    <FirebaseContext.Provider value={{ user }}>
+    <FirebaseContext.Provider value={{ user, firebase }}>
       <div>
         <Header />
         <Switch>

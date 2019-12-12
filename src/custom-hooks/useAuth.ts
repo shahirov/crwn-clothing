@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
+import { User } from 'firebase'
 
 import { firebase } from '../firebase'
 
-export type FirebaseUser = firebase.User | null
-
 export const useAuth = () => {
-  const [authUser, setAuthUser] = useState<FirebaseUser>(null)
+  const [authUser, setAuthUser] = useState<User | null>(null)
 
   useEffect(() => {
-    const unsubscribe = firebase.auth.onAuthStateChanged((user) => setAuthUser(user))
+    const unsubscribe = firebase.auth.onAuthStateChanged((user) => {
+      if (user) {
+        setAuthUser(user)
+      }
+    })
 
     return () => unsubscribe()
   }, [])

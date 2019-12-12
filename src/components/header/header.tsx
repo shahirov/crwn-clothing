@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 
 import { ReactComponent as Logo } from './crown-logo.svg'
 import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
-import { FirebaseContext, firebase } from '../../firebase'
+import { FirebaseContext } from '../../firebase'
 
 const Header = () => {
-  const { user } = useContext(FirebaseContext)
+  const { user, firebase } = useContext(FirebaseContext)
 
   return (
     <header>
@@ -17,7 +17,7 @@ const Header = () => {
           <StyledLink to="/shop">SHOP</StyledLink>
           {user ? (
             <li>
-              <SignOutButton onClick={() => firebase.auth.signOut()}>SIGN OUT</SignOutButton>
+              <SignOutButton onClick={firebase.auth.signOut}>SIGN OUT</SignOutButton>
             </li>
           ) : (
             <>

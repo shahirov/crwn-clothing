@@ -1,9 +1,14 @@
 import React from 'react'
+import { User } from 'firebase'
 
-import { FirebaseUser } from '../custom-hooks'
+import { firebase } from './firebase'
 
 interface FirebaseContextProps {
-  user: FirebaseUser
+  firebase: typeof firebase
+  user: User | null
 }
 
-export const FirebaseContext: React.Context<Partial<FirebaseContextProps>> = React.createContext({})
+export const FirebaseContext = React.createContext<FirebaseContextProps>({
+  firebase,
+  user: null
+})
