@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin.styles'
 import FormInput from '../../components/form-input/form-input'
 import { Button } from '../../components/custom-button/custom-button.styles'
+import { firebase } from '../../firebase'
 
 interface FormValues {
   email: string
@@ -36,7 +37,7 @@ const Signin = () => {
             <Button type="submit" color="green">
               Sign in
             </Button>
-            <Button type="button" color="blue">
+            <Button type="button" color="blue" onClick={firebase.signInWithGoogle}>
               Sign in with google
             </Button>
           </Buttons>
@@ -48,4 +49,5 @@ const Signin = () => {
     </Wrapper>
   )
 }
+
 export default Signin

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export const Wrapper = styled.header`
+export const Navigation = styled.nav`
   height: 70px;
   width: 100%;
   display: flex;
@@ -15,7 +15,7 @@ export const LogoContainer = styled(Link)`
   padding: 25px;
 `
 
-export const Options = styled.div`
+export const NavLinks = styled.ul`
   width: 50%;
   height: 100%;
   display: flex;
@@ -23,6 +23,12 @@ export const Options = styled.div`
   justify-content: flex-end;
 `
 
-export const Option = styled(Link)`
+export const StyledLink = styled(Link)`
   padding: 10px 15px;
+  cursor: pointer;
+`
+
+export const SignOutButton = styled.a`
+  padding: 10px 15px;
+  cursor: pointer;
 `

@@ -1,20 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { ReactComponent as Logo } from './crown-logo.svg'
-import { Wrapper, LogoContainer, Options, Option } from './header.styles'
+import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
+import { FirebaseContext, firebase } from '../../firebase'
 
 const Header = () => {
+  const { user } = useContext(FirebaseContext)
+
   return (
-    <Wrapper>
-      <LogoContainer to="/">
-        <Logo />
-      </LogoContainer>
-      <Options>
-        <Option to="/shop">SHOP</Option>
-        <Option to="/signin">SIGN IN</Option>
-        <Option to="/signup">SIGN UP</Option>
-      </Options>
-    </Wrapper>
+    <header>
+      <Navigation>
+        <LogoContainer to="/">
+          <Logo />
+        </LogoContainer>
+        <NavLinks>
+          <StyledLink to="/shop">SHOP</StyledLink>
+          {user ? (
+            <li>
+              <SignOutButton onClick={() => firebase.auth.signOut()}>SIGN OUT</SignOutButton>
+            </li>
+          ) : (
+            <>
+              <li>
+                <StyledLink to="/signin">SIGN IN</StyledLink>
+              </li>
+              <li>
+                <StyledLink to="/signup">SIGN UP</StyledLink>
+              </li>
+            </>
+          )}
+        </NavLinks>
+      </Navigation>
+    </header>
   )
 }
 export default Header
