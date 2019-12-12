@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Form, Formik } from 'formik'
+import { Form, Formik, FormikHelpers } from 'formik'
+import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin.styles'
@@ -15,6 +16,20 @@ interface SignInFormValues {
 const Signin = () => {
   const initialValues: SignInFormValues = { email: '', password: '' }
   const { firebase } = useContext(FirebaseContext)
+  const history = useHistory()
+
+  const handleSubmit = async (
+    values: SignInFormValues,
+    { resetForm }: FormikHelpers<SignInFormValues>
+  ) => {
+    try {
+      await firebase.auth.signInWithEmailAndPassword(values.email, values.password)
+      resetForm()
+      history.push('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Wrapper>
@@ -29,7 +44,7 @@ const Signin = () => {
             .min(6, 'Password must have at least 6 characters.')
             .required('Please enter a password.')
         })}
-        onSubmit={(values) => {}}
+        onSubmit={handleSubmit}
       >
         <Form>
           <FormInput label="Email" name="email" type="email" />
