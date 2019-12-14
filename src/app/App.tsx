@@ -1,19 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import HomePage from '../pages/homepage/homepage'
 import Shop from '../pages/shop/shop'
-import Header from '../components/header/header'
+import Header from '../features/user/header'
 import Signup from '../pages/signup/signup'
 import Signin from '../pages/signin/signin'
-import { FirebaseContext, firebase } from '../firebase'
-import { useAuth } from '../custom-hooks'
+import firebase from '../firebase/firebase'
+import { setCurrentUser } from '../features/user/user-slice'
+import { RootState } from './rootReducer'
+
+interface SnapshotData {
+  displayName: string
+  email: string
+  createdAt: firebase.firestore.Timestamp
+}
 
 const App = () => {
-  const user = useAuth()
+  const dispatch = useDispatch()
+  const user = useSelector((state: RootState) => state.user.currentUser)
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await firebase.createUserProfileDocument(userAuth)
+
+        userRef?.onSnapshot((snapshot) => {
+          const { displayName, email, createdAt } = snapshot.data() as SnapshotData
+
+          dispatch(
+            setCurrentUser({
+              id: snapshot.id,
+              displayName,
+              email,
+              createdAt: createdAt.toMillis()
+            })
+          )
+        })
+      } else {
+        dispatch(setCurrentUser(userAuth))
+      }
+    })
+
+    return () => unsubscribe()
+  }, [dispatch])
 
   return (
-    <FirebaseContext.Provider value={{ user, firebase }}>
+    <>
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -21,7 +55,7 @@ const App = () => {
         <Route path="/signin">{user ? <Redirect to="/" /> : <Signin />}</Route>
         <Route path="/signup" component={Signup} />
       </Switch>
-    </FirebaseContext.Provider>
+    </>
   )
 }
 
