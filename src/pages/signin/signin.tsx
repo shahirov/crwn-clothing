@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Form, Formik, FormikHelpers } from 'formik'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
-import { FirebaseContext } from '../../firebase'
+import firebase from '../../firebase/firebase'
 
 interface SignInFormValues {
   email: string
@@ -15,7 +15,6 @@ interface SignInFormValues {
 
 const Signin = () => {
   const initialValues: SignInFormValues = { email: '', password: '' }
-  const { firebase } = useContext(FirebaseContext)
   const history = useHistory()
 
   const handleSubmit = async (

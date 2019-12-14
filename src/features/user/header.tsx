@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-import { ReactComponent as Logo } from './crown-logo.svg'
+import { ReactComponent as Logo } from '../../assets/crown-logo.svg'
 import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
-import { FirebaseContext } from '../../firebase'
+import { RootState } from '../../app/rootReducer'
+import firebase from '../../firebase/firebase'
 
 const Header = () => {
-  const { user, firebase } = useContext(FirebaseContext)
+  const user = useSelector((state: RootState) => state.user.currentUser)
 
   const signOutUser = () => {
     firebase.auth.signOut()
