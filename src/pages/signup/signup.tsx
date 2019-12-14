@@ -1,5 +1,4 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import { Formik, Form, FormikHelpers } from 'formik'
 import * as Yup from 'yup'
 
@@ -22,7 +21,6 @@ const Signup = () => {
     password: '',
     confirmPassword: ''
   }
-  const history = useHistory()
 
   const handleSubmit = async (
     values: SignUpFormValues,
@@ -38,7 +36,6 @@ const Signup = () => {
     try {
       await firebase.createUserProfileDocument(user, { displayName: values.displayName })
       resetForm()
-      history.push('/')
     } catch (error) {
       console.log(error)
     }

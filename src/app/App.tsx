@@ -52,8 +52,8 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={Shop} />
-        <Route path="/signin">{user ? <Redirect to="/" /> : <Signin />}</Route>
-        <Route path="/signup" component={Signup} />
+        <Route path="/signin" render={() => (user ? <Redirect to="/" /> : <Signin />)} />
+        <Route path="/signup" render={() => (user ? <Redirect to="/" /> : <Signup />)} />
       </Switch>
     </>
   )
