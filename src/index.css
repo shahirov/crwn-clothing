@@ -22,8 +22,10 @@ li {
 button {
   font-size: 14px;
   line-height: 1;
+  min-width: 150px;
+  margin-right: auto;
   border-radius: 500px;
-  padding: 16px 48px 18px;
+  padding: 0 35px 0 35px;
   transition-property: background-color, border-color, color, box-shadow, filter;
   transition-duration: 0.3s;
   border-width: 0;
@@ -34,6 +36,7 @@ button {
   font-family: 'Open Sans Condensed';
   font-weight: 700;
   height: 50px;
+  color: white;
   border-width: 0;
   text-transform: uppercase;
   cursor: pointer;

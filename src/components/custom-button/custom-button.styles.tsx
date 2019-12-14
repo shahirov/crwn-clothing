@@ -1,18 +1,53 @@
 import styled from 'styled-components'
 
 type ButtonProps = {
-  color?: 'blue' | 'green'
-  signUp?: boolean
-  signIn?: boolean
+  color?: 'blue' | 'green' | 'default'
+  name?: 'signin' | 'signup' | 'default'
 }
 
 export const Button = styled.button`
-  color: white;
-  background-color: ${({ color }: ButtonProps) => (color === 'blue' ? '#3b5998' : '#1db954')};
-  width: ${(props) => (props.signUp ? '320px' : '')};
-  margin: ${(props) => (props.signUp ? '0 auto' : '')};
+  background-color: ${({ color }: ButtonProps) => {
+    switch (color) {
+      case 'blue':
+        return '#3b5998'
+      case 'green':
+        return '#1db954'
+      default:
+        return '#000'
+    }
+  }};
+  width: ${({ name }: ButtonProps) => {
+    switch (name) {
+      case 'signup':
+        return '320px'
+      case 'signin':
+        return '250px'
+      default:
+        return 'auto'
+    }
+  }};
+  margin: ${({ name }: ButtonProps) => {
+    switch (name) {
+      case 'signup':
+        return '0 auto'
+      case 'signin':
+        return ''
+      default:
+        return 'auto auto 0 auto'
+    }
+  }};
 
   &:hover {
-    background-color: ${({ color }: ButtonProps) => (color === 'blue' ? '#3a61b3' : '#1ed760')};
+    color: ${({ color }) => (color === 'default' ? 'black' : 'white')};
+    background-color: ${({ color }: ButtonProps) => {
+      switch (color) {
+        case 'blue':
+          return '#3a61b3'
+        case 'green':
+          return '#1ed760'
+        default:
+          return 'white'
+      }
+    }};
   }
 `

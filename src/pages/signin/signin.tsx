@@ -49,13 +49,13 @@ const Signin = () => {
           <FormInput label="Email" name="email" type="email" />
           <FormInput label="Password" name="password" type="password" />
           <Buttons>
-            <CustomButton type="submit" color="green" signIn>
+            <CustomButton type="submit" color="green">
               Sign in
             </CustomButton>
             <CustomButton
               type="button"
               color="blue"
-              signIn
+              name="signin"
               handleClick={() => firebase.signInWithGoogle()}
             >
               Sign in with google
@@ -65,7 +65,7 @@ const Signin = () => {
       </Formik>
       <Divider />
       <SignUpTitle>Don't have an account?</SignUpTitle>
-      <SignUpLink to="/signin">Sign Up</SignUpLink>
+      <SignUpLink to="/signup">Sign Up</SignUpLink>
     </Wrapper>
   )
 }

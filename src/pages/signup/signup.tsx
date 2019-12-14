@@ -68,7 +68,7 @@ const Signup = () => {
           <FormInput label="Password" name="password" type="password" />
           <FormInput label="Confirm Password" name="confirmPassword" type="password" />
           <Buttons>
-            <CustomButton type="submit" color="green" signUp>
+            <CustomButton type="submit" color="green" name="signup">
               Sign up
             </CustomButton>
           </Buttons>
