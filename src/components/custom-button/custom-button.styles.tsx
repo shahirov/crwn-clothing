@@ -38,7 +38,7 @@ export const Button = styled.button`
   }};
 
   &:hover {
-    color: ${({ color }) => (color === 'default' ? 'black' : 'white')};
+    color: ${({ color }) => (color === 'default' ? 'white' : 'black')};
     background-color: ${({ color }: ButtonProps) => {
       switch (color) {
         case 'blue':
@@ -46,7 +46,7 @@ export const Button = styled.button`
         case 'green':
           return '#1ed760'
         default:
-          return 'white'
+          return '#191919'
       }
     }};
   }

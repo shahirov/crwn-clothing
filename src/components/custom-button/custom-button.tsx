@@ -1,4 +1,5 @@
 import React from 'react'
+import firebase from 'firebase'
 
 import { Button } from './custom-button.styles'
 
@@ -6,7 +7,7 @@ type CustomButtonProps = {
   type?: 'button' | 'submit' | 'reset'
   color?: 'blue' | 'green' | 'default'
   name?: 'signin' | 'signup' | 'default'
-  handleClick?: () => Promise<firebase.auth.UserCredential>
+  handleClick?: () => Promise<firebase.auth.UserCredential> | void
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({ handleClick, children, ...otherProps }) => (

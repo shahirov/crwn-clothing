@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { ReactComponent as Icon } from '../../assets/shopping-bag-icon.svg'
+import { ReactComponent as Icon } from '../../../assets/shopping-bag-icon.svg'
 
 export const Wrapper = styled.div`
   width: 45px;

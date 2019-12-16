@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import HomePage from '../pages/homepage/homepage'
 import Shop from '../pages/shop/shop'
-import Header from '../features/user/header'
+import Header from '../features/user/header/header'
 import Signup from '../pages/signup/signup'
 import Signin from '../pages/signin/signin'
 import firebase from '../firebase/firebase'

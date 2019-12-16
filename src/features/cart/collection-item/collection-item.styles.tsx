@@ -4,14 +4,6 @@ type ImageProps = {
   imageUrl: string
 }
 
-export const Wrapper = styled.div`
-  width: 22%;
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-  align-items: center;
-`
-
 export const Image = styled.div`
   width: 100%;
   height: 95%;
@@ -19,6 +11,33 @@ export const Image = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: 5px;
+`
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  align-items: center;
+
+  & button {
+    position: absolute;
+    top: 255px;
+    display: none;
+    align-items: center;
+  }
+
+  &:hover {
+    ${Image} {
+      opacity: 0.8;
+    }
+
+    button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
 `
 
 export const Footer = styled.div`

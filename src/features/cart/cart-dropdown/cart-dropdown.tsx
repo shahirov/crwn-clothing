@@ -2,8 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { Wrapper, CartItems } from './cart-dropdown.styles'
-import CustomButton from '../custom-button/custom-button'
-import { RootState } from '../../app/rootReducer'
+import CustomButton from '../../../components/custom-button/custom-button'
+import { RootState } from '../../../app/rootReducer'
 
 const CartDropdown = () => {
   const hidden = useSelector((state: RootState) => state.cart.hidden)
@@ -17,4 +17,5 @@ const CartDropdown = () => {
     </Wrapper>
   ) : null
 }
+
 export default CartDropdown

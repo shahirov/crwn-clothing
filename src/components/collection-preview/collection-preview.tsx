@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
-import CollectionItem from '../collection-item/collection-item'
+import CollectionItem from '../../features/cart/collection-item/collection-item'
 import { Wrapper, Items, Title } from './collection-preview.styles'
 
-type PreviewItem = {
+export type Item = {
   id: number
   name: string
   price: number
@@ -11,15 +11,13 @@ type PreviewItem = {
 
 type CollectionPreviewProps = {
   title: string
-  items: PreviewItem[]
+  items: Item[]
 }
 
 const CollectionPreview: React.FC<CollectionPreviewProps> = ({ title, items }) => {
   const memoizedItems = useMemo(
     () =>
-      items
-        .filter((_, idx) => idx < 4)
-        .map(({ id, ...otherProps }) => <CollectionItem key={id} {...otherProps} />),
+      items.filter((_, idx) => idx < 4).map((item) => <CollectionItem key={item.id} item={item} />),
     [items]
   )
 
