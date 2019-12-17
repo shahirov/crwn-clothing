@@ -8,9 +8,12 @@ export const Wrapper = styled.div`
   padding: 15px 0;
   font-size: 20px;
   align-items: center;
+  justify-content: center;
 `
 
 export const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
   width: 23%;
   padding-right: 15px;
 `
@@ -21,19 +24,31 @@ export const Image = styled.img`
 `
 
 export const Name = styled.span`
+  padding-right: 20px;
+  text-align: center;
   width: 23%;
 `
 
 export const Price = styled.span`
+  padding-left: 35px;
   width: 23%;
 `
 
-export const Quantity = styled.span`
+export const Quantity = styled.div`
+  display: flex;
   width: 23%;
-  padding-left: 20px;
+  padding-left: 21px;
 `
 
 export const RemoveButton = styled.span`
-  padding-left: 12px;
+  text-align: center;
   cursor: pointer;
+`
+
+export const Arrow = styled.div`
+  cursor: pointer;
+`
+
+export const Value = styled.span`
+  margin: 0 10px;
 `

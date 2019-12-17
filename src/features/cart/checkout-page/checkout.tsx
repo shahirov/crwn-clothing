@@ -4,7 +4,7 @@ import { Wrapper, CheckoutHeader, HeaderBlock, Total } from './checkout.styles'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../app/rootReducer'
 import { selectCartItems, selectCartItemsTotalPrice } from '../cart-selectors'
-import CheckoutItem from '../../../components/checkout-item/checkout-item'
+import CheckoutItem from '../checkout-item/checkout-item'
 
 const Checkout = () => {
   const cartItems = useSelector((state: RootState) => selectCartItems(state))
@@ -20,10 +20,10 @@ const Checkout = () => {
           <span>Description</span>
         </HeaderBlock>
         <HeaderBlock>
-          <span>Price</span>
+          <span>Quantity</span>
         </HeaderBlock>
         <HeaderBlock>
-          <span>Quantity</span>
+          <span>Price</span>
         </HeaderBlock>
         <HeaderBlock>
           <span>Remove</span>

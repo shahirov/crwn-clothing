@@ -7,6 +7,7 @@ import Shop from '../pages/shop/shop'
 import Header from '../features/user/header/header'
 import Signup from '../pages/signup/signup'
 import Signin from '../pages/signin/signin'
+import Checkout from '../features/cart/checkout-page/checkout'
 import firebase from '../firebase/firebase'
 import { setCurrentUser } from '../features/user/user-slice'
 import { RootState } from './rootReducer'
@@ -52,6 +53,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={Shop} />
+        <Route path="/checkout" component={Checkout} />
         <Route path="/signin" render={() => (user ? <Redirect to="/" /> : <Signin />)} />
         <Route path="/signup" render={() => (user ? <Redirect to="/" /> : <Signup />)} />
       </Switch>

@@ -18,6 +18,15 @@ const initialState: CartState = {
   cartItems: []
 }
 
+const addItemToCart = (state: CartState, action: PayloadAction<CartItem>) => {
+  const idx = state.cartItems.findIndex((item) => item.id === action.payload.id)
+  idx >= 0 ? (state.cartItems[idx].quantity += 1) : state.cartItems.push(action.payload)
+}
+
+const removeItemFromCart = (state: CartState, action: PayloadAction<CartItem>) => {
+  state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id)
+}
+
 const cart = createSlice({
   name: 'cart',
   initialState,
@@ -25,19 +34,17 @@ const cart = createSlice({
     toggleCartHidden(state: CartState) {
       state.hidden = !state.hidden
     },
-    addItem(state: CartState, action: PayloadAction<CartItem>) {
+    removeItem(state: CartState, action: PayloadAction<CartItem>) {
       const idx = state.cartItems.findIndex((item) => item.id === action.payload.id)
-
-      if (idx >= 0) {
-        state.cartItems[idx].quantity += 1
-        state.cartItems[idx].price += action.payload.price
-      } else {
-        state.cartItems.push(action.payload)
-      }
-    }
+      action.payload.quantity <= 1
+        ? removeItemFromCart(state, action)
+        : (state.cartItems[idx].quantity -= 1)
+    },
+    addItem: addItemToCart,
+    clearItemFromCart: removeItemFromCart
   }
 })
 
-export const { toggleCartHidden, addItem } = cart.actions
+export const { toggleCartHidden, clearItemFromCart, addItem, removeItem } = cart.actions
 
 export default cart.reducer

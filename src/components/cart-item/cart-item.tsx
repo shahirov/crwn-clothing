@@ -18,7 +18,7 @@ const CartItem: React.FC<CartItemProps> = ({ item: { name, price, imageUrl, quan
       <ItemDetails>
         <ItemName>{name}</ItemName>
         <span>
-          {quantity} x ${price}
+          {quantity} x ${price * quantity}
         </span>
       </ItemDetails>
     </Wrapper>
