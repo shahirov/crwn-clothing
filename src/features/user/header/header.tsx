@@ -7,9 +7,12 @@ import { RootState } from '../../../app/rootReducer'
 import firebase from '../../../firebase/firebase'
 import CartIcon from '../../cart/cart-icon/cart-icon'
 import CartDropdown from '../../cart/cart-dropdown/cart-dropdown'
+import { selectCurrentUser } from '../user-selectors'
+import { selectCartHidden } from '../../cart/cart-selectors'
 
 const Header = () => {
-  const user = useSelector((state: RootState) => state.user.currentUser)
+  const user = useSelector((state: RootState) => selectCurrentUser(state))
+  const hidden = useSelector((state: RootState) => selectCartHidden(state))
 
   const signOutUser = () => {
     firebase.auth.signOut()
@@ -42,7 +45,7 @@ const Header = () => {
           </li>
         </NavLinks>
       </Navigation>
-      <CartDropdown />
+      {!hidden && <CartDropdown />}
     </header>
   )
 }
