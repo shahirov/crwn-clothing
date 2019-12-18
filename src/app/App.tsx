@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import HomePage from '../pages/homepage/homepage'
-import Shop from '../pages/shop/shop'
+import HomePage from '../pages/home/home-page'
+import Shop from '../features/shop/shop-page/shop-page'
 import Header from '../features/user/header/header'
-import Signup from '../pages/signup/signup'
-import Signin from '../pages/signin/signin'
+import SignupPage from '../pages/signup/signup-page'
+import SigninPage from '../pages/signin/signin-page'
 import Checkout from '../features/cart/checkout-page/checkout'
 import firebase from '../firebase/firebase'
 import { setCurrentUser } from '../features/user/user-slice'
@@ -54,8 +54,8 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={Shop} />
         <Route path="/checkout" component={Checkout} />
-        <Route path="/signin" render={() => (user ? <Redirect to="/" /> : <Signin />)} />
-        <Route path="/signup" render={() => (user ? <Redirect to="/" /> : <Signup />)} />
+        <Route path="/signin" render={() => (user ? <Redirect to="/" /> : <SigninPage />)} />
+        <Route path="/signup" render={() => (user ? <Redirect to="/" /> : <SignupPage />)} />
       </Switch>
     </>
   )
