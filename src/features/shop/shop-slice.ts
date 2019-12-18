@@ -2,22 +2,23 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import SHOP_DATA from './shop-data'
 
-type CollectionItem = {
+export type CollectionItemProp = {
   id: number
   name: string
   imageUrl: string
   price: number
 }
 
-type Collection = {
+export type Collection = {
   id: number
   title: string
   routeName: string
-  items: CollectionItem[]
+  items: CollectionItemProp[]
 }
 
 interface ShopState {
   collections: {
+    [key: string]: Collection
     hats: Collection
     jackets: Collection
     sneakers: Collection

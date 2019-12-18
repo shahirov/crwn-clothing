@@ -3,7 +3,7 @@ import { Form, Formik, FormikHelpers } from 'formik'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 
-import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin.styles'
+import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin-page.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
 import firebase from '../../firebase/firebase'
@@ -13,7 +13,7 @@ interface SignInFormValues {
   password: string
 }
 
-const Signin = () => {
+const SigninPage = () => {
   const initialValues: SignInFormValues = { email: '', password: '' }
   const history = useHistory()
 
@@ -70,4 +70,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default SigninPage

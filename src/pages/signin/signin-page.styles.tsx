@@ -50,11 +50,9 @@ export const SignUpLink = styled(Link)`
   text-transform: uppercase;
   white-space: normal;
   display: block;
-  font-family: 'Open Sans Condensed';
   font-weight: 700;
   height: 50px;
   box-shadow: inset 0 0 0 2px #616467;
-  text-transform: uppercase;
   cursor: pointer;
   width: 100%;
 

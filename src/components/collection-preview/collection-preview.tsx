@@ -1,17 +1,12 @@
 import React, { useMemo } from 'react'
-import CollectionItem from '../../features/cart/collection-item/collection-item'
-import { Wrapper, Items, Title } from './collection-preview.styles'
 
-export type Item = {
-  id: number
-  name: string
-  price: number
-  imageUrl: string
-}
+import CollectionItem from '../collection-item/collection-item'
+import { Wrapper, Items, Title } from './collection-preview.styles'
+import { CollectionItemProp } from '../../features/shop/shop-slice'
 
 type CollectionPreviewProps = {
   title: string
-  items: Item[]
+  items: CollectionItemProp[]
 }
 
 const CollectionPreview: React.FC<CollectionPreviewProps> = ({ title, items }) => {

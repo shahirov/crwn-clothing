@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import { createSlice } from '@reduxjs/toolkit'
 
-import { Wrapper } from './directory-menu.styles'
-import MenuItem from '../menu-item/menu-item'
+type Section = {
+  title: string
+  imageUrl: string
+  id: number
+  route: string
+  size?: string
+}
 
-const DirectoryMenu = () => {
-  const [sections] = useState([
+interface DirectoryState {
+  sections: Section[]
+}
+
+const initialState: DirectoryState = {
+  sections: [
     {
       title: 'hats',
       imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
@@ -37,14 +46,13 @@ const DirectoryMenu = () => {
       id: 5,
       route: 'mens'
     }
-  ])
-
-  return (
-    <Wrapper>
-      {sections.map(({ id, ...otherProps }) => (
-        <MenuItem key={id} {...otherProps} />
-      ))}
-    </Wrapper>
-  )
+  ]
 }
-export default DirectoryMenu
+
+const directory = createSlice({
+  name: 'directory',
+  initialState,
+  reducers: {}
+})
+
+export default directory.reducer

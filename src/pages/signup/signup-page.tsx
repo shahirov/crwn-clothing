@@ -2,7 +2,14 @@ import React from 'react'
 import { Formik, Form, FormikHelpers } from 'formik'
 import * as Yup from 'yup'
 
-import { Wrapper, Title, Buttons, SignInTitle, SignInLink, SignInWrapper } from './signup.styles'
+import {
+  Wrapper,
+  Title,
+  Buttons,
+  SignInTitle,
+  SignInLink,
+  SignInWrapper
+} from './signup-page.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
 import firebase from '../../firebase/firebase'
@@ -14,7 +21,7 @@ interface SignUpFormValues {
   confirmPassword: string
 }
 
-const Signup = () => {
+const SignupPage = () => {
   const initialValues: SignUpFormValues = {
     displayName: '',
     email: '',
@@ -81,4 +88,4 @@ const Signup = () => {
     </Wrapper>
   )
 }
-export default Signup
+export default SignupPage

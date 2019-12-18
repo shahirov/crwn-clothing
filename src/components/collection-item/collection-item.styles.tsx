@@ -4,7 +4,11 @@ type ImageProps = {
   imageUrl: string
 }
 
-export const Image = styled.div`
+type WrapperProps = {
+  size?: string
+}
+
+export const Image = styled.img`
   width: 100%;
   height: 95%;
   background-image: ${(props: ImageProps) => `url(${props.imageUrl})`};
@@ -15,7 +19,7 @@ export const Image = styled.div`
 
 export const Wrapper = styled.div`
   position: relative;
-  width: 22%;
+  width: ${(props: WrapperProps) => (props.size === 'large' ? '100%' : '22%')};
   display: flex;
   flex-direction: column;
   height: 350px;

@@ -14,7 +14,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, imageUrl, size, route }) => 
   const history = useHistory()
 
   return (
-    <Wrapper size={size} onClick={() => history.push(`/${route}`)}>
+    <Wrapper size={size} onClick={() => history.push(`/shop/${route}`)}>
       <BgImage imageUrl={imageUrl} />
       <ItemContent>
         <ItemTitle>{title.toUpperCase()}</ItemTitle>

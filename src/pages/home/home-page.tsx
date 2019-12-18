@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Wrapper } from './homepage.styles'
-import DirectoryMenu from '../../components/directory-menu/directory-menu'
+import { Wrapper } from './home-page.styles'
+import DirectoryMenu from '../../features/directory/directory-menu/directory-menu'
 
 const HomePage = () => {
   return (
