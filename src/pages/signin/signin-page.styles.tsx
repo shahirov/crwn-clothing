@@ -8,8 +8,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `
 
-export const StyledInput = styled.input``
-
 export const Title = styled.h2`
   margin: 10px 0;
   text-align: center;
