@@ -3,6 +3,9 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 import config from './config'
+import { CollectionItemProp } from '../slices/shop-slice'
+
+type Document = { title: string; items: CollectionItemProp[] }
 
 class Firebase {
   auth: app.auth.Auth
@@ -46,6 +49,42 @@ class Firebase {
     }
 
     return userRef
+  }
+
+  async addCollectionAndDocuments(
+    collectionName: string,
+    documentsToAdd: Document[]
+  ): Promise<void> {
+    const collectionRef = this.firestore.collection(collectionName)
+
+    const batch = this.firestore.batch()
+
+    documentsToAdd.forEach((obj: any) => {
+      const newDocRef = collectionRef.doc()
+      batch.set(newDocRef, obj)
+    })
+
+    return batch.commit()
+  }
+
+  convertCollectionsSnapshotToMap(collections: firebase.firestore.QuerySnapshot) {
+    const transformedCollections = collections.docs.map(
+      (doc: firebase.firestore.DocumentSnapshot) => {
+        const { title, items } = doc.data() as firebase.firestore.DocumentData
+
+        return {
+          routeName: encodeURI(title.toLowerCase()),
+          id: doc.id,
+          title,
+          items
+        }
+      }
+    )
+
+    return transformedCollections.reduce((acc: any, collection: { title: string }) => {
+      acc[collection.title.toLowerCase()] = collection
+      return acc
+    }, {})
   }
 }
 

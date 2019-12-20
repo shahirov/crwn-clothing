@@ -1,8 +1,6 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit'
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 
 import { RootState } from '../redux/rootReducer'
-
-import SHOP_DATA from './shop-data'
 
 export type CollectionItemProp = {
   id: number
@@ -18,36 +16,52 @@ export type Collection = {
   items: CollectionItemProp[]
 }
 
+export type Collections = {
+  [key: string]: Collection
+  hats: Collection
+  jackets: Collection
+  sneakers: Collection
+  womens: Collection
+  mens: Collection
+}
+
 interface ShopState {
-  collections: {
-    [key: string]: Collection
-    hats: Collection
-    jackets: Collection
-    sneakers: Collection
-    womens: Collection
-    mens: Collection
-  }
+  collections: Collections | null
 }
 
 const initialState: ShopState = {
-  collections: SHOP_DATA
+  collections: null
 }
 
 const selectShop = (state: RootState) => state.shop
 
 const selectCollections = createSelector([selectShop], (shop) => shop.collections)
 
-export const selectCollectionsForPreview = createSelector([selectCollections], (collections) =>
-  Object.keys(collections).map((key) => collections[key])
-)
+export const selectCollectionsForPreview = createSelector([selectCollections], (collections) => {
+  if (collections) {
+    return Object.keys(collections).map((key) => collections[key])
+  }
+
+  return []
+})
 
 export const makeSelectCollection = (collectionUrlParam: string) =>
-  createSelector([selectCollections], (collections) => collections[collectionUrlParam])
+  createSelector([selectCollections], (collections) => {
+    if (collections) {
+      return collections[collectionUrlParam]
+    }
+  })
 
 const shop = createSlice({
   name: 'shop',
   initialState,
-  reducers: {}
+  reducers: {
+    updateCollections(state: ShopState, action: PayloadAction<Collections>) {
+      state.collections = action.payload
+    }
+  }
 })
+
+export const { updateCollections } = shop.actions
 
 export default shop.reducer
