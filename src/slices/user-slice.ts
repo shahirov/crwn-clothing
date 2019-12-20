@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
+
+import { RootState } from '../redux/rootReducer'
 
 interface AuthUser {
   id: string
@@ -14,6 +16,10 @@ interface UserState {
 const initialState: UserState = {
   currentUser: null
 }
+
+const selectUser = (state: RootState) => state.user
+
+export const selectCurrentUser = createSelector([selectUser], (user) => user.currentUser)
 
 const user = createSlice({
   name: 'user',

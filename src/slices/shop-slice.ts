@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
+
+import { RootState } from '../redux/rootReducer'
 
 import SHOP_DATA from './shop-data'
 
@@ -30,6 +32,17 @@ interface ShopState {
 const initialState: ShopState = {
   collections: SHOP_DATA
 }
+
+const selectShop = (state: RootState) => state.shop
+
+const selectCollections = createSelector([selectShop], (shop) => shop.collections)
+
+export const selectCollectionsForPreview = createSelector([selectCollections], (collections) =>
+  Object.keys(collections).map((key) => collections[key])
+)
+
+export const makeSelectCollection = (collectionUrlParam: string) =>
+  createSelector([selectCollections], (collections) => collections[collectionUrlParam])
 
 const shop = createSlice({
   name: 'shop',

@@ -2,9 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { Wrapper } from './collections-overview.styles'
-import { RootState } from '../../../app/rootReducer'
-import { selectCollectionsForPreview } from '../shop-selectors'
-import CollectionPreview from '../../../components/collection-preview/collection-preview'
+import { RootState } from '../../redux/rootReducer'
+import CollectionPreview from '../collection-preview/collection-preview'
+import { selectCollectionsForPreview } from '../../slices/shop-slice'
 
 const CollectionsOverview = () => {
   const collections = useSelector((state: RootState) => selectCollectionsForPreview(state))

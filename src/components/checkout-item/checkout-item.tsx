@@ -12,7 +12,7 @@ import {
   Arrow,
   Value
 } from './checkout-item.styles'
-import { clearItemFromCart, addItem, removeItem, CartItem } from '../cart-slice'
+import { clearItemFromCart, addItem, removeItem, CartItem } from '../../slices/cart-slice'
 
 type CheckoutItemProps = {
   item: CartItem

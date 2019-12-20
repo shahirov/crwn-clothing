@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, useRouteMatch } from 'react-router'
 
-import CollectionsOverview from '../../features/shop/collections-overview/collections-overview'
-import CollectionPage from '../../features/shop/collection-page/collection-page'
+import CollectionsOverview from '../../components/collections-overview/collections-overview'
+import CollectionPage from '../../components/collection-page/collection-page'
 
 const ShopPage = () => {
   const match = useRouteMatch()

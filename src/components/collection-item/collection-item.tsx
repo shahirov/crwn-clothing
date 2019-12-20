@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux'
 
 import { Wrapper, Image, Footer, Name, Price } from './collection-item.styles'
 import CustomButton from '../custom-button/custom-button'
-import { addItem } from '../../features/cart/cart-slice'
-import { CollectionItemProp } from '../../features/shop/shop-slice'
+import { addItem } from '../../slices/cart-slice'
+import { CollectionItemProp } from '../../slices/shop-slice'
 
 type CollectionItemProps = {
   item: CollectionItemProp

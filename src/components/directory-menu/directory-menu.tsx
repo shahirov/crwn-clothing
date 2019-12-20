@@ -2,9 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { Wrapper } from './directory-menu.styles'
-import MenuItem from '../../../components/menu-item/menu-item'
-import { RootState } from '../../../app/rootReducer'
-import { selectDirectorySections } from '../directory-selectors'
+import MenuItem from '../menu-item/menu-item'
+import { RootState } from '../../redux/rootReducer'
+import { selectDirectorySections } from '../../slices/directory-slice'
 
 const DirectoryMenu = () => {
   const sections = useSelector((state: RootState) => selectDirectorySections(state))

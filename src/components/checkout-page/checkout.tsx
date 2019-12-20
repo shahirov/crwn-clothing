@@ -1,10 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { Wrapper, CheckoutHeader, HeaderBlock, Total } from './checkout.styles'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../app/rootReducer'
-import { selectCartItems, selectCartItemsTotalPrice } from '../cart-selectors'
+import { RootState } from '../../redux/rootReducer'
 import CheckoutItem from '../checkout-item/checkout-item'
+import { selectCartItems, selectCartItemsTotalPrice } from '../../slices/cart-slice'
 
 const Checkout = () => {
   const cartItems = useSelector((state: RootState) => selectCartItems(state))

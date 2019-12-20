@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
 import { Wrapper, CartItems, EmptyMessage } from './cart-dropdown.styles'
-import CustomButton from '../../../components/custom-button/custom-button'
-import { RootState } from '../../../app/rootReducer'
-import CartItem from '../../../components/cart-item/cart-item'
-import { selectCartItems } from '../cart-selectors'
+import CustomButton from '../custom-button/custom-button'
+import { RootState } from '../../redux/rootReducer'
+import CartItem from '../cart-item/cart-item'
+import { selectCartItems } from '../../slices/cart-slice'
 
 const CartDropdown = () => {
   const history = useHistory()

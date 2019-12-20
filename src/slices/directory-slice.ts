@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createSelector } from '@reduxjs/toolkit'
+
+import { RootState } from '../redux/rootReducer'
 
 type Section = {
   title: string
@@ -11,6 +13,13 @@ type Section = {
 interface DirectoryState {
   sections: Section[]
 }
+
+const selectDirectory = (state: RootState) => state.directory
+
+export const selectDirectorySections = createSelector(
+  [selectDirectory],
+  (directory) => directory.sections
+)
 
 const initialState: DirectoryState = {
   sections: [
