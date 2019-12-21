@@ -5,14 +5,18 @@ import { useSelector } from 'react-redux'
 import { Wrapper, Items, Title } from './collection-page.styles'
 import { RootState } from '../../redux/rootReducer'
 import CollectionItem from '../collection-item/collection-item'
-import { Collection, makeSelectCollection } from '../../slices/shop-slice'
+import { makeSelectCollection } from '../../slices/shop-slice'
+import withSpinner from '../withSpinner/withSpinner'
 
 const CollectionPage = () => {
   const { categoryId } = useParams()
 
   const selectCollections = makeSelectCollection(categoryId!)
   const collection = useSelector((state: RootState) => selectCollections(state))
-  const { title, items } = collection as Collection
+
+  if (collection === null) return null
+
+  const { title, items } = collection
 
   return (
     <Wrapper>
@@ -26,4 +30,4 @@ const CollectionPage = () => {
   )
 }
 
-export default CollectionPage
+export default withSpinner(CollectionPage)

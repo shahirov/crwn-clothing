@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router'
 import { useDispatch } from 'react-redux'
 
@@ -11,12 +11,16 @@ const ShopPage = () => {
   const match = useRouteMatch()
   const dispatch = useDispatch()
 
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     const collectionRef = firebase.firestore.collection('collections')
 
     const unsubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot) => {
-      const collectionsMap = firebase.convertCollectionsSnapshotToMap(snapshot)
+      const collectionsMap = await firebase.convertCollectionsSnapshotToMap(snapshot)
       dispatch(updateCollections(collectionsMap))
+
+      setLoading(false)
     })
 
     return () => unsubscribeFromSnapshot()
@@ -24,8 +28,12 @@ const ShopPage = () => {
 
   return (
     <main>
-      <Route exact path={match.path} component={CollectionsOverview} />
-      <Route exact path={`${match.path}/:categoryId`} component={CollectionPage} />
+      <Route exact path={match.path} render={() => <CollectionsOverview isLoading={loading} />} />
+      <Route
+        exact
+        path={`${match.path}/:categoryId`}
+        render={() => <CollectionPage isLoading={loading} />}
+      />
     </main>
   )
 }

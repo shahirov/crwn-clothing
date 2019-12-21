@@ -50,6 +50,8 @@ export const makeSelectCollection = (collectionUrlParam: string) =>
     if (collections) {
       return collections[collectionUrlParam]
     }
+
+    return null
   })
 
 const shop = createSlice({
