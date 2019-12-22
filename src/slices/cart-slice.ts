@@ -1,6 +1,8 @@
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
+import { takeLatest, all, put, call } from 'redux-saga/effects'
 
 import { RootState } from '../redux/rootReducer'
+import { signOutSuccess } from './user-slice'
 
 export interface CartItem {
   id: number
@@ -57,10 +59,25 @@ const cart = createSlice({
         : (state.cartItems[idx].quantity -= 1)
     },
     addItem: addItemToCart,
-    clearItemFromCart: removeItemFromCart
+    clearItemFromCart: removeItemFromCart,
+    clearCart(state: CartState) {
+      state.cartItems = []
+    }
   }
 })
 
-export const { toggleCartHidden, clearItemFromCart, addItem, removeItem } = cart.actions
+export const { toggleCartHidden, clearItemFromCart, addItem, removeItem, clearCart } = cart.actions
 
 export default cart.reducer
+
+function* clearCartOnSignOut() {
+  yield put(clearCart())
+}
+
+function* watchClearCartOnSignOut() {
+  yield takeLatest(signOutSuccess.type, clearCartOnSignOut)
+}
+
+export function* cartSagas() {
+  yield all([call(watchClearCartOnSignOut)])
+}

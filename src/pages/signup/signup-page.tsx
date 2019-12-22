@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Formik, Form, FormikHelpers } from 'formik'
 import * as Yup from 'yup'
 
@@ -12,7 +13,7 @@ import {
 } from './signup-page.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
-import firebase from '../../firebase/firebase'
+import { signUpStart } from '../../slices/user-slice'
 
 interface SignUpFormValues {
   displayName: string
@@ -29,23 +30,20 @@ const SignupPage = () => {
     confirmPassword: ''
   }
 
+  const dispatch = useDispatch()
+
   const handleSubmit = async (
     values: SignUpFormValues,
     { resetForm }: FormikHelpers<SignUpFormValues>
   ) => {
-    const { user } = await firebase.auth.createUserWithEmailAndPassword(
-      values.email,
-      values.password
+    dispatch(
+      signUpStart({
+        email: values.email,
+        password: values.password,
+        displayName: values.displayName
+      })
     )
-
-    if (!user) return
-
-    try {
-      await firebase.createUserProfileDocument(user, { displayName: values.displayName })
-      resetForm()
-    } catch (error) {
-      console.log(error)
-    }
+    // resetForm()
   }
 
   return (

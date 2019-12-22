@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Wrapper, CheckoutHeader, HeaderBlock, Total } from './checkout.styles'
+import { Wrapper, CheckoutHeader, HeaderBlock, Total } from './checkout-page.styles'
 import { RootState } from '../../redux/rootReducer'
-import CheckoutItem from '../checkout-item/checkout-item'
+import CheckoutItem from '../../components/checkout-item/checkout-item'
 import { selectCartItems, selectCartItemsTotalPrice } from '../../slices/cart-slice'
 
-const Checkout = () => {
+const CheckoutPage = () => {
   const cartItems = useSelector((state: RootState) => selectCartItems(state))
   const total = useSelector((state: RootState) => selectCartItemsTotalPrice(state))
 
@@ -37,4 +37,4 @@ const Checkout = () => {
   )
 }
 
-export default Checkout
+export default CheckoutPage

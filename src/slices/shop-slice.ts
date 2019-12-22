@@ -1,6 +1,8 @@
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
+import { takeLatest, put, call } from 'redux-saga/effects'
 
 import { RootState } from '../redux/rootReducer'
+import firebase from '../firebase/firebase'
 
 export type CollectionItemProp = {
   id: number
@@ -27,10 +29,14 @@ export type Collections = {
 
 interface ShopState {
   collections: Collections | null
+  isFetching: boolean
+  errorMsg: string
 }
 
 const initialState: ShopState = {
-  collections: null
+  collections: null,
+  isFetching: false,
+  errorMsg: ''
 }
 
 const selectShop = (state: RootState) => state.shop
@@ -58,12 +64,39 @@ const shop = createSlice({
   name: 'shop',
   initialState,
   reducers: {
-    updateCollections(state: ShopState, action: PayloadAction<Collections>) {
+    fetchCollectionsStart(state: ShopState) {
+      state.isFetching = true
+    },
+    fetchCollectionsSuccess(state: ShopState, action: PayloadAction<Collections>) {
+      state.isFetching = false
       state.collections = action.payload
+    },
+    fetchCollectionsFailure(state: ShopState, action: PayloadAction<string>) {
+      state.isFetching = false
+      state.errorMsg = action.payload
     }
   }
 })
 
-export const { updateCollections } = shop.actions
+export const {
+  fetchCollectionsStart,
+  fetchCollectionsSuccess,
+  fetchCollectionsFailure
+} = shop.actions
 
 export default shop.reducer
+
+function* fetchCollectionsAsync() {
+  try {
+    const collectionRef = firebase.firestore.collection('collections')
+    const collectionSnapshot = yield collectionRef.get()
+    const collectionsMap = yield call(firebase.convertCollectionsSnapshotToMap, collectionSnapshot)
+    yield put(fetchCollectionsSuccess(collectionsMap))
+  } catch (error) {
+    yield put(fetchCollectionsFailure(error.message))
+  }
+}
+
+export function* watchFetchCollectionsAsync() {
+  yield takeLatest(fetchCollectionsStart.type, fetchCollectionsAsync)
+}

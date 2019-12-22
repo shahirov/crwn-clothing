@@ -1,21 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ReactComponent as Logo } from './crown-logo.svg'
 import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
 import { RootState } from '../../redux/rootReducer'
-import firebase from '../../firebase/firebase'
 import CartIcon from '../cart-icon/cart-icon'
 import CartDropdown from '../cart-dropdown/cart-dropdown'
-import { selectCurrentUser } from '../../slices/user-slice'
+import { selectCurrentUser, signOutStart } from '../../slices/user-slice'
 import { selectCartHidden } from '../../slices/cart-slice'
 
 const Header = () => {
+  const dispatch = useDispatch()
+
   const user = useSelector((state: RootState) => selectCurrentUser(state))
   const hidden = useSelector((state: RootState) => selectCartHidden(state))
 
   const signOutUser = () => {
-    firebase.auth.signOut()
+    dispatch(signOutStart())
   }
 
   return (

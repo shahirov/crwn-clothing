@@ -1,8 +1,11 @@
-import { configureStore, getDefaultMiddleware, Action } from '@reduxjs/toolkit'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
-import { ThunkAction } from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 
-import persistedReducer, { RootState } from './rootReducer'
+import persistedReducer from './rootReducer'
+import rootSaga from './rootSaga'
+
+const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -12,13 +15,13 @@ const store = configureStore({
         // Fixes 'non-serializable value...' error message that caused by redux-persist library
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
       }
-    })
+    }),
+    sagaMiddleware
   ]
 })
 
-export const persistor = persistStore(store)
+sagaMiddleware.run(rootSaga)
 
-export type AppDispatch = typeof store.dispatch
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
+export const persistor = persistStore(store)
 
 export default store

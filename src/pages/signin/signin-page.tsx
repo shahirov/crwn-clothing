@@ -1,12 +1,12 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Form, Formik, FormikHelpers } from 'formik'
-import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin-page.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
-import firebase from '../../firebase/firebase'
+import { googleSignInStart, emailSignInStart } from '../../slices/user-slice'
 
 interface SignInFormValues {
   email: string
@@ -15,19 +15,14 @@ interface SignInFormValues {
 
 const SigninPage = () => {
   const initialValues: SignInFormValues = { email: '', password: '' }
-  const history = useHistory()
+  const dispatch = useDispatch()
 
   const handleSubmit = async (
     values: SignInFormValues,
     { resetForm }: FormikHelpers<SignInFormValues>
   ) => {
-    try {
-      await firebase.auth.signInWithEmailAndPassword(values.email, values.password)
-      resetForm()
-      history.push('/')
-    } catch (error) {
-      console.log(error)
-    }
+    dispatch(emailSignInStart({ email: values.email, password: values.password }))
+    resetForm()
   }
 
   return (
@@ -56,7 +51,9 @@ const SigninPage = () => {
               type="button"
               color="blue"
               name="signin"
-              handleClick={() => firebase.signInWithGoogle()}
+              handleClick={() => {
+                dispatch(googleSignInStart())
+              }}
             >
               Sign in with google
             </CustomButton>
