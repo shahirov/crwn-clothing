@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SpinnerContainer, SpinnerOverlay } from './withSpinner.styles'
+import Spinner from '../spinner/spinner'
 
 type InjectedProps = {
   isLoading: boolean
@@ -10,13 +10,7 @@ const withSpinner = (WrappedComponent: React.ComponentType): React.FC<InjectedPr
   isLoading,
   ...otherProps
 }) => {
-  return isLoading ? (
-    <SpinnerOverlay>
-      <SpinnerContainer />
-    </SpinnerOverlay>
-  ) : (
-    <WrappedComponent {...otherProps} />
-  )
+  return isLoading ? <Spinner /> : <WrappedComponent {...otherProps} />
 }
 
 export default withSpinner

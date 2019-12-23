@@ -15,7 +15,7 @@ export interface AuthUser {
   id?: string
   email: string | null
   displayName: string
-  createdAt: number | string | undefined
+  createdAt?: number | string | undefined
   uid?: string
 }
 
@@ -58,12 +58,12 @@ const user = createSlice({
       state: UserState,
       action: PayloadAction<{
         user: User
-        additionalData?: string
+        additionalData: { displayName: string }
       }>
     ) {
       state.currentUser = {
         email: action.payload.user.email,
-        displayName: action.payload.additionalData ? action.payload.additionalData : '',
+        displayName: action.payload.additionalData.displayName,
         createdAt: action.payload.user.metadata.creationTime,
         uid: action.payload.user.uid
       }
@@ -149,7 +149,7 @@ function* signUp({ payload: { email, password, displayName } }: ReturnType<typeo
     yield put(
       signUpSuccess({
         user: user,
-        displayName: displayName
+        additionalData: { displayName }
       })
     )
   } catch (error) {
@@ -160,7 +160,7 @@ function* signUp({ payload: { email, password, displayName } }: ReturnType<typeo
 function* signInAfterSignUp({
   payload: { user, additionalData }
 }: ReturnType<typeof signUpSuccess>) {
-  yield getSnapshotFromUserAuth(user, { displayName: additionalData ? additionalData : '' })
+  yield getSnapshotFromUserAuth(user, additionalData)
 }
 
 function* watchIsUserAuthenticated() {
