@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   font-size: 20px;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 800px) {
+    font-size: 18px;
+  }
 `
 
 export const ImageContainer = styled.div`
@@ -27,22 +31,39 @@ export const Name = styled.span`
   padding-right: 20px;
   text-align: center;
   width: 23%;
+
+  @media screen and (max-width: 800px) {
+    width: 22%;
+  }
 `
 
 export const Price = styled.span`
   padding-left: 35px;
   width: 23%;
+
+  @media screen and (max-width: 800px) {
+    width: 22%;
+    padding-left: 18px;
+  }
 `
 
 export const Quantity = styled.div`
   display: flex;
   width: 23%;
-  padding-left: 21px;
+  padding-left: 25px;
+
+  @media screen and (max-width: 800px) {
+    padding-left: 7px;
+  }
 `
 
 export const RemoveButton = styled.span`
   text-align: center;
   cursor: pointer;
+
+  @media screen and (max-width: 800px) {
+    padding-right: 8px;
+  }
 `
 
 export const Arrow = styled.div`

@@ -25,7 +25,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({ item, size }) => {
       <Image imageUrl={imageUrl} />
       <Footer>
         <Name>{name}</Name>
-        <Price>${price}</Price>
+        <Price>{price}</Price>
       </Footer>
       <CustomButton type="button" color="default" name="default" handleClick={addItemToCart}>
         ADD TO CART

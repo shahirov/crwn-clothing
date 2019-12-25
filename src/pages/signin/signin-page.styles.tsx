@@ -6,6 +6,21 @@ export const Wrapper = styled.div`
   width: 450px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    width: unset;
+    align-items: center;
+
+    form {
+      margin: 0 auto;
+      width: 380px;
+    }
+
+    > *:first-child {
+      margin-bottom: 50px;
+    }
+  }
 `
 
 export const Title = styled.h2`
@@ -53,6 +68,10 @@ export const SignUpLink = styled(Link)`
   box-shadow: inset 0 0 0 2px #616467;
   cursor: pointer;
   width: 100%;
+
+  @media screen and (max-width: 800px) {
+    width: 380px;
+  }
 
   &:hover {
     color: #fff;

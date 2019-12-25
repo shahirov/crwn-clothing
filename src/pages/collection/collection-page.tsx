@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 
 import { Wrapper, Items, Title } from './collection-page.styles'
 import { RootState } from '../../redux/rootReducer'
-import CollectionItem from '../collection-item/collection-item'
+import CollectionItem from '../../components/collection-item/collection-item'
 import { makeSelectCollection } from '../../slices/shop-slice'
-import withSpinner from '../withSpinner/withSpinner'
+import withSpinner from '../../components/withSpinner/withSpinner'
 
 const CollectionPage = () => {
   const { categoryId } = useParams()

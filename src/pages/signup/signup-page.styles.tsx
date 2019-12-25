@@ -7,6 +7,21 @@ export const Wrapper = styled.div`
   width: 450px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    width: unset;
+    align-items: center;
+
+    form {
+      margin: 0 auto;
+      width: 380px;
+    }
+
+    > *:first-child {
+      margin-bottom: 50px;
+    }
+  }
 `
 
 export const StyledInput = styled.input``

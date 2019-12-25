@@ -7,7 +7,7 @@ type InputLabelProps = {
 export const Group = styled.div`
   position: relative;
   margin-left: 0;
-  meargin-right: 0;
+  margin-right: 0;
   margin-bottom: 25px;
 `
 
@@ -30,7 +30,6 @@ export const InputLabel = styled.label`
 `
 
 export const Input = styled.input`
-  background: none;
   background-color: white;
   color: black;
   font-size: 18px;
@@ -41,6 +40,9 @@ export const Input = styled.input`
   border-radius: 0;
   border-bottom: 1px solid grey;
   margin: 25px 0;
+
+  @media screen and (max-width: 800px) {
+  }
 
   &:focus {
     outline: none;

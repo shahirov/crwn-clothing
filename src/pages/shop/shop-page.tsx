@@ -6,7 +6,7 @@ import { fetchCollectionsStart } from '../../slices/shop-slice'
 import { RootState } from '../../redux/rootReducer'
 import Spinner from '../../components/spinner/spinner'
 
-const CollectionPage = React.lazy(() => import('../../components/collection-page/collection-page'))
+const CollectionPage = React.lazy(() => import('../collection/collection-page'))
 const CollectionsOverview = React.lazy(() =>
   import('../../components/collections-overview/collections-overview')
 )
