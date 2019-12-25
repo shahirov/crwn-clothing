@@ -25,4 +25,4 @@ const CartItem: React.FC<CartItemProps> = ({ item: { name, price, imageUrl, quan
   )
 }
 
-export default CartItem
+export default React.memo(CartItem)
