@@ -4,14 +4,13 @@ import { useHistory } from 'react-router'
 
 import { Wrapper, CartItems, EmptyMessage } from './cart-dropdown.styles'
 import CustomButton from '../custom-button/custom-button'
-import { RootState } from '../../redux/rootReducer'
 import CartItem from '../cart-item/cart-item'
 import { selectCartItems } from '../../slices/cart-slice'
 
 const CartDropdown = () => {
   const history = useHistory()
 
-  const cartItems = useSelector((state: RootState) => selectCartItems(state))
+  const cartItems = useSelector(selectCartItems)
 
   const toCheckoutPage = () => history.push('/checkout')
 

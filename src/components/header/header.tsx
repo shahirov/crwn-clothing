@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { ReactComponent as Logo } from './crown-logo.svg'
 import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
-import { RootState } from '../../redux/rootReducer'
 import CartIcon from '../cart-icon/cart-icon'
 import CartDropdown from '../cart-dropdown/cart-dropdown'
 import { selectCurrentUser, signOutStart } from '../../slices/user-slice'
@@ -12,8 +11,8 @@ import { selectCartHidden } from '../../slices/cart-slice'
 const Header = () => {
   const dispatch = useDispatch()
 
-  const user = useSelector((state: RootState) => selectCurrentUser(state))
-  const hidden = useSelector((state: RootState) => selectCartHidden(state))
+  const user = useSelector(selectCurrentUser)
+  const hidden = useSelector(selectCartHidden)
 
   const signOutUser = () => {
     dispatch(signOutStart())
