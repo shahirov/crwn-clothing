@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Wrapper, ShoppingIcon, ItemCount } from './cart-icon.styles'
-import { selectCartItemsCount, toggleCartHidden } from '../../slices/cart-slice'
+import { selectCartItemsCount } from '../../slices/cart/selectors'
+import { toggleCartHidden } from '../../slices/cart/slice'
 
 const CartIcon = () => {
   const dispatch = useDispatch()

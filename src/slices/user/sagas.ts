@@ -1,92 +1,25 @@
-import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit'
 import { takeLatest, put, call, all } from 'redux-saga/effects'
-import { User } from 'firebase'
 
-import { RootState } from '../redux/rootReducer'
-import firebase from '../firebase/firebase'
+import { firebase } from '../../firebase'
+import { User } from 'firebase'
+import {
+  AuthUser,
+  signOutSuccess,
+  signOutStart,
+  signUpStart,
+  signUpSuccess,
+  signInSuccess,
+  signFailure,
+  emailSignInStart,
+  checkUserSession,
+  googleSignInStart
+} from './slice'
 
 interface SnapshotData {
   displayName: string
   email: string
   createdAt: firebase.firestore.Timestamp
 }
-
-export interface AuthUser {
-  id?: string
-  email: string | null
-  displayName: string
-  createdAt?: number | string | undefined
-  uid?: string
-}
-
-interface UserState {
-  currentUser: AuthUser | User | null
-  error: string
-}
-
-const initialState: UserState = {
-  currentUser: null,
-  error: ''
-}
-
-const selectUser = (state: RootState) => state.user
-export const selectCurrentUser = createSelector([selectUser], (user) => user.currentUser)
-
-const user = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    emailSignInStart(
-      state: UserState,
-      action: PayloadAction<{ email: string; password: string }>
-    ) {},
-    signInSuccess(state: UserState, action: PayloadAction<AuthUser>) {
-      state.currentUser = action.payload
-      state.error = ''
-    },
-    signOutStart() {},
-    signOutSuccess(state: UserState) {
-      state.currentUser = null
-    },
-    checkUserSession() {},
-    googleSignInStart() {},
-    signUpStart(
-      state: UserState,
-      action: PayloadAction<{ email: string; password: string; displayName: string }>
-    ) {},
-    signUpSuccess(
-      state: UserState,
-      action: PayloadAction<{
-        user: User
-        additionalData: { displayName: string }
-      }>
-    ) {
-      state.currentUser = {
-        email: action.payload.user.email,
-        displayName: action.payload.additionalData.displayName,
-        createdAt: action.payload.user.metadata.creationTime,
-        uid: action.payload.user.uid
-      }
-    },
-    signFailure: (state: UserState, action: PayloadAction<string>) => {
-      state.error = action.payload
-    }
-  }
-})
-
-export default user.reducer
-
-export const {
-  signInSuccess,
-  checkUserSession,
-  googleSignInStart,
-  emailSignInStart,
-  signOutStart,
-  signOutSuccess,
-  signUpStart,
-  signUpSuccess,
-  signFailure
-} = user.actions
 
 function* getSnapshotFromUserAuth(userAuth: User | AuthUser, metadata?: { displayName: string }) {
   try {

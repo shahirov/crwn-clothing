@@ -5,8 +5,9 @@ import { ReactComponent as Logo } from './crown-logo.svg'
 import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
 import CartIcon from '../cart-icon/cart-icon'
 import CartDropdown from '../cart-dropdown/cart-dropdown'
-import { selectCurrentUser, signOutStart } from '../../slices/user-slice'
-import { selectCartHidden } from '../../slices/cart-slice'
+import { selectCurrentUser } from '../../slices/user/selectors'
+import { selectCartHidden } from '../../slices/cart/selectors'
+import { signOutStart } from '../../slices/user/slice'
 
 const Header = () => {
   const dispatch = useDispatch()

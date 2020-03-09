@@ -2,8 +2,8 @@ import React, { Suspense, useEffect } from 'react'
 import { Route, useRouteMatch } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchCollectionsStart } from '../../slices/shop-slice'
-import { RootState } from '../../redux/rootReducer'
+import { fetchCollectionsStart } from '../../slices/shop/slice'
+import { RootState } from '../../store/rootReducer'
 import Spinner from '../../components/spinner/spinner'
 
 const CollectionPage = React.lazy(() => import('../collection/collection-page'))

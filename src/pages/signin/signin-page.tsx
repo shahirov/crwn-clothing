@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 import { Wrapper, Title, Divider, Buttons, SignUpLink, SignUpTitle } from './signin-page.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
-import { googleSignInStart, emailSignInStart } from '../../slices/user-slice'
+import { googleSignInStart, emailSignInStart } from '../../slices/user/slice'
 
 interface SignInFormValues {
   email: string

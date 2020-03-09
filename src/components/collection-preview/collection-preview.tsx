@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 
 import CollectionItem from '../collection-item/collection-item'
 import { Wrapper, Items, Title } from './collection-preview.styles'
-import { CollectionItemProp } from '../../slices/shop-slice'
+import { CollectionItemProp } from '../../slices/shop/slice'
 
 type CollectionPreviewProps = {
   title: string

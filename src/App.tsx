@@ -6,7 +6,8 @@ import { GlobalStyle } from './global.styles'
 import Header from './components/header/header'
 import Spinner from './components/spinner/spinner'
 import ErrorBoundary from './components/error-boundary/error-boundary'
-import { checkUserSession, selectCurrentUser } from './slices/user-slice'
+import { checkUserSession } from './slices/user/slice'
+import { selectCurrentUser } from './slices/user/selectors'
 
 const HomePage = React.lazy(() => import('./pages/home/home-page'))
 const ShopPage = React.lazy(() => import('./pages/shop/shop-page'))

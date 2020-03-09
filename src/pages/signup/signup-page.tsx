@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Formik, Form, FormikHelpers } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 import {
@@ -13,7 +13,7 @@ import {
 } from './signup-page.styles'
 import FormInput from '../../components/form-input/form-input'
 import CustomButton from '../../components/custom-button/custom-button'
-import { signUpStart } from '../../slices/user-slice'
+import { signUpStart } from '../../slices/user/slice'
 
 interface SignUpFormValues {
   displayName: string
@@ -32,10 +32,7 @@ const SignupPage = () => {
 
   const dispatch = useDispatch()
 
-  const handleSubmit = async (
-    values: SignUpFormValues,
-    { resetForm }: FormikHelpers<SignUpFormValues>
-  ) => {
+  const handleSubmit = async (values: SignUpFormValues) => {
     dispatch(
       signUpStart({
         email: values.email,
@@ -43,7 +40,6 @@ const SignupPage = () => {
         displayName: values.displayName
       })
     )
-    // resetForm()
   }
 
   return (

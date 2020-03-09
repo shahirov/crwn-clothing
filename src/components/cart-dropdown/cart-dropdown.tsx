@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 import { Wrapper, CartItems, EmptyMessage } from './cart-dropdown.styles'
 import CustomButton from '../custom-button/custom-button'
 import CartItem from '../cart-item/cart-item'
-import { selectCartItems } from '../../slices/cart-slice'
+import { selectCartItems } from '../../slices/cart/selectors'
 
 const CartDropdown = () => {
   const history = useHistory()

@@ -3,8 +3,8 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 import { config } from './config'
-import { CollectionItemProp } from '../slices/shop-slice'
-import { AuthUser } from '../slices/user-slice'
+import { CollectionItemProp } from '../slices/shop/slice'
+import { AuthUser } from '../slices/user/slice'
 
 interface Document {
   title: string
@@ -104,6 +104,4 @@ class Firebase {
   }
 }
 
-const firebase = new Firebase()
-
-export default firebase
+export const firebase = new Firebase()

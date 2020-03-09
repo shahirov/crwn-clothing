@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { Wrapper, Items, Title } from './collection-page.styles'
 import CollectionItem from '../../components/collection-item/collection-item'
-import { makeSelectCollection } from '../../slices/shop-slice'
+import { makeSelectCollection } from '../../slices/shop/selectors'
 import withSpinner from '../../components/withSpinner/withSpinner'
 
 const CollectionPage = () => {
