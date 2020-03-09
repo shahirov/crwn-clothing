@@ -4,21 +4,21 @@ import { takeLatest, put, call } from 'redux-saga/effects'
 import { RootState } from '../redux/rootReducer'
 import firebase from '../firebase/firebase'
 
-export type CollectionItemProp = {
+export interface CollectionItemProp {
   id: number
   name: string
   imageUrl: string
   price: number
 }
 
-export type Collection = {
+export interface Collection {
   id: number
   title: string
   routeName: string
   items: CollectionItemProp[]
 }
 
-export type Collections = {
+export interface Collections {
   [key: string]: Collection
   hats: Collection
   jackets: Collection

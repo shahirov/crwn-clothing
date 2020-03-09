@@ -2,11 +2,14 @@ import app, { User } from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-import config from './config'
+import { config } from './config'
 import { CollectionItemProp } from '../slices/shop-slice'
 import { AuthUser } from '../slices/user-slice'
 
-type Document = { title: string; items: CollectionItemProp[] }
+interface Document {
+  title: string
+  items: CollectionItemProp[]
+}
 
 class Firebase {
   auth: app.auth.Auth
