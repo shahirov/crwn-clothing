@@ -1,6 +1,6 @@
 import { takeLatest, put, call } from 'redux-saga/effects'
 
-import { firebase } from '../../firebase'
+import { firebase } from '../../lib/firebase'
 import { fetchCollectionsStart, fetchCollectionsSuccess, fetchCollectionsFailure } from './slice'
 
 function* fetchCollectionsAsync() {

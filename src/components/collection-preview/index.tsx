@@ -2,11 +2,11 @@ import React, { useMemo } from 'react'
 
 import { CollectionItem } from '../collection-item'
 import { Wrapper, Items, Title } from './styles'
-import { CollectionItemProp } from '../../features/shop/slice'
+import { CollectionItem as ICollectionItem } from '../../lib/types'
 
 interface Props {
   title: string
-  items: CollectionItemProp[]
+  items: ICollectionItem[]
 }
 
 export const CollectionPreview = ({ title, items }: Props) => {

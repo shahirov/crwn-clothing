@@ -3,12 +3,11 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 import { config } from './config'
-import { CollectionItemProp } from '../features/shop/slice'
-import { AuthUser } from '../features/user/slice'
+import { AuthUser, CollectionItem } from '../types'
 
 interface Document {
   title: string
-  items: CollectionItemProp[]
+  items: CollectionItem[]
 }
 
 class Firebase {

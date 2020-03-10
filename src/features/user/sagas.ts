@@ -1,9 +1,9 @@
 import { takeLatest, put, call, all } from 'redux-saga/effects'
 
-import { firebase } from '../../firebase'
+import { firebase } from '../../lib/firebase'
+import { AuthUser } from '../../lib/types'
 import { User } from 'firebase'
 import {
-  AuthUser,
   signOutSuccess,
   signOutStart,
   signUpStart,

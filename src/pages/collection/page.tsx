@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { Wrapper, Items, Title } from './styles'
 import { CollectionItem } from '../../components/collection-item'
 import { makeSelectCollection } from '../../features/shop/selectors'
-import { withSpinner } from '../../hoc'
+import { withSpinner } from '../../lib/hoc'
 
 export const CollectionPage = withSpinner(() => {
   const { categoryId } = useParams()

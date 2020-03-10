@@ -1,26 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-export interface CollectionItemProp {
-  id: number
-  name: string
-  imageUrl: string
-  price: number
-}
+import { CollectionItem } from '../../lib/types'
 
-export interface Collection {
+interface Collection {
   id: number
   title: string
   routeName: string
-  items: CollectionItemProp[]
+  items: CollectionItem[]
 }
 
-export interface Collections {
+interface Collections {
   [key: string]: Collection
-  hats: Collection
-  jackets: Collection
-  sneakers: Collection
-  womens: Collection
-  mens: Collection
 }
 
 interface ShopState {

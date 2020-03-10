@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { Wrapper } from './styles'
-import { withSpinner } from '../../hoc'
+import { withSpinner } from '../../lib/hoc'
 import { CollectionPreview } from '../collection-preview'
 import { selectCollectionsForPreview } from '../../features/shop/selectors'
 

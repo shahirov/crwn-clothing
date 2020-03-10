@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux'
 import { Wrapper, Image, Footer, Name, Price } from './styles'
 import { CustomButton } from '../custom-button'
 import { addItem } from '../../features/cart/slice'
-import { CollectionItemProp } from '../../features/shop/slice'
+import { CollectionItem as ICollectionItem } from '../../lib/types'
 
 interface Props {
-  item: CollectionItemProp
+  item: ICollectionItem
   size?: 'large' | 'small' | 'default'
 }
 

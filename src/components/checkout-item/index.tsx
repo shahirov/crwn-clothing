@@ -12,7 +12,8 @@ import {
   Arrow,
   Value
 } from './styles'
-import { clearItemFromCart, addItem, removeItem, CartItem } from '../../features/cart/slice'
+import { clearItemFromCart, addItem, removeItem } from '../../features/cart/slice'
+import { CartItem } from '../../lib/types'
 
 interface Props {
   item: CartItem

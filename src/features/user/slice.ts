@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { User } from 'firebase'
-
-export interface AuthUser {
-  id?: string
-  email: string | null
-  displayName: string
-  createdAt?: number | string | undefined
-  uid?: string
-}
+import { AuthUser } from '../../lib/types'
 
 interface UserState {
   currentUser: AuthUser | User | null
