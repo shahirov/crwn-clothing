@@ -1,6 +1,6 @@
 import React from 'react'
 
-import imageUrl from './404.png'
+import imageUrl from './assets/404.png'
 import { ErrorImageContainer, ErrorImageOverlay, ErrorImageText } from './styles'
 
 type State = {
