@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Wrapper, CheckoutHeader, HeaderBlock, Total } from './checkout-page.styles'
-import CheckoutItem from '../../components/checkout-item/checkout-item'
-import { selectCartItems, selectCartItemsTotalPrice } from '../../slices/cart/selectors'
+import { Wrapper, CheckoutHeader, HeaderBlock, Total } from './styles'
+import { CheckoutItem } from '../../components/checkout-item'
+import { selectCartItems, selectCartItemsTotalPrice } from '../../features/cart/selectors'
 
-const CheckoutPage = () => {
+export const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems)
   const total = useSelector(selectCartItemsTotalPrice)
 
@@ -35,5 +35,3 @@ const CheckoutPage = () => {
     </Wrapper>
   )
 }
-
-export default CheckoutPage

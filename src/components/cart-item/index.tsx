@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-import { Wrapper, ItemImage, ItemDetails, ItemName } from './cart-item.styles'
+import { Wrapper, ItemImage, ItemDetails, ItemName } from './styles'
 
-type CartItemProps = {
+interface Props {
   item: {
     name: string
     price: number
@@ -11,7 +11,7 @@ type CartItemProps = {
   }
 }
 
-const CartItem: React.FC<CartItemProps> = ({ item: { name, price, imageUrl, quantity } }) => {
+export const CartItem = memo(({ item: { name, price, imageUrl, quantity } }: Props) => {
   return (
     <Wrapper>
       <ItemImage src={imageUrl} />
@@ -23,6 +23,4 @@ const CartItem: React.FC<CartItemProps> = ({ item: { name, price, imageUrl, quan
       </ItemDetails>
     </Wrapper>
   )
-}
-
-export default React.memo(CartItem)
+})

@@ -2,16 +2,14 @@ import React, { Suspense, useEffect } from 'react'
 import { Route, useRouteMatch } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { fetchCollectionsStart } from '../../slices/shop/slice'
+import { fetchCollectionsStart } from '../../features/shop/slice'
 import { RootState } from '../../store/rootReducer'
-import Spinner from '../../components/spinner/spinner'
+import { Spinner } from '../../components/spinner'
 
-const CollectionPage = React.lazy(() => import('../collection/collection-page'))
-const CollectionsOverview = React.lazy(() =>
-  import('../../components/collections-overview/collections-overview')
-)
+const CollectionPage = React.lazy(() => import('../collection'))
+const CollectionsOverview = React.lazy(() => import('../../components/collections-overview'))
 
-const ShopPage = () => {
+export const ShopPage = () => {
   const match = useRouteMatch()
   const dispatch = useDispatch()
 
@@ -34,4 +32,3 @@ const ShopPage = () => {
     </main>
   )
 }
-export default ShopPage

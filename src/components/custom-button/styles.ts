@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-type ButtonProps = {
+interface Props {
   color?: 'blue' | 'green' | 'default'
   name?: 'signin' | 'signup' | 'default'
 }
 
-export const Button = styled.button`
-  background-color: ${({ color }: ButtonProps) => {
+export const Button = styled.button<Props>`
+  background-color: ${({ color }) => {
     switch (color) {
       case 'blue':
         return '#3b5998'
@@ -16,7 +16,7 @@ export const Button = styled.button`
         return '#000'
     }
   }};
-  width: ${({ name }: ButtonProps) => {
+  width: ${({ name }) => {
     switch (name) {
       case 'signup':
         return '320px'
@@ -26,7 +26,7 @@ export const Button = styled.button`
         return 'auto'
     }
   }};
-  margin: ${({ name }: ButtonProps) => {
+  margin: ${({ name }) => {
     switch (name) {
       case 'signup':
         return '0 auto'
@@ -39,7 +39,7 @@ export const Button = styled.button`
 
   &:hover {
     color: ${({ color }) => (color === 'default' ? 'white' : 'black')};
-    background-color: ${({ color }: ButtonProps) => {
+    background-color: ${({ color }) => {
       switch (color) {
         case 'blue':
           return '#3a61b3'

@@ -3,8 +3,8 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 import { config } from './config'
-import { CollectionItemProp } from '../slices/shop/slice'
-import { AuthUser } from '../slices/user/slice'
+import { CollectionItemProp } from '../features/shop/slice'
+import { AuthUser } from '../features/user/slice'
 
 interface Document {
   title: string

@@ -2,14 +2,14 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ReactComponent as Logo } from './crown-logo.svg'
-import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './header.styles'
-import CartIcon from '../cart-icon/cart-icon'
-import CartDropdown from '../cart-dropdown/cart-dropdown'
-import { selectCurrentUser } from '../../slices/user/selectors'
-import { selectCartHidden } from '../../slices/cart/selectors'
-import { signOutStart } from '../../slices/user/slice'
+import { Navigation, LogoContainer, NavLinks, StyledLink, SignOutButton } from './styles'
+import { CartIcon } from '../cart-icon'
+import { CartDropdown } from '../cart-dropdown'
+import { selectCurrentUser } from '../../features/user/selectors'
+import { selectCartHidden } from '../../features/cart/selectors'
+import { signOutStart } from '../../features/user/slice'
 
-const Header = () => {
+export const Header = () => {
   const dispatch = useDispatch()
 
   const user = useSelector(selectCurrentUser)
@@ -50,4 +50,3 @@ const Header = () => {
     </header>
   )
 }
-export default Header

@@ -2,12 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 
-import { Wrapper, CartItems, EmptyMessage } from './cart-dropdown.styles'
-import CustomButton from '../custom-button/custom-button'
-import CartItem from '../cart-item/cart-item'
-import { selectCartItems } from '../../slices/cart/selectors'
+import { Wrapper, CartItems, EmptyMessage } from './styles'
+import { CustomButton } from '../custom-button'
+import { CartItem } from '../cart-item'
+import { selectCartItems } from '../../features/cart/selectors'
 
-const CartDropdown = () => {
+export const CartDropdown = () => {
   const history = useHistory()
 
   const cartItems = useSelector(selectCartItems)
@@ -29,5 +29,3 @@ const CartDropdown = () => {
     </Wrapper>
   )
 }
-
-export default CartDropdown

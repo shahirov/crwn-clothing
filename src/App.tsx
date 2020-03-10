@@ -3,19 +3,19 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { GlobalStyle } from './global.styles'
-import Header from './components/header/header'
-import Spinner from './components/spinner/spinner'
-import ErrorBoundary from './components/error-boundary/error-boundary'
-import { checkUserSession } from './slices/user/slice'
-import { selectCurrentUser } from './slices/user/selectors'
+import { Header } from './components/header'
+import { Spinner } from './components/spinner'
+import { ErrorBoundary } from './components/error-boundary'
+import { checkUserSession } from './features/user/slice'
+import { selectCurrentUser } from './features/user/selectors'
 
-const HomePage = React.lazy(() => import('./pages/home/home-page'))
-const ShopPage = React.lazy(() => import('./pages/shop/shop-page'))
-const SignUpPage = React.lazy(() => import('./pages/signup/signup-page'))
-const SignInPage = React.lazy(() => import('./pages/signin/signin-page'))
-const CheckoutPage = React.lazy(() => import('./pages/checkout/checkout-page'))
+const HomePage = React.lazy(() => import('./pages/home'))
+const ShopPage = React.lazy(() => import('./pages/shop'))
+const SignUpPage = React.lazy(() => import('./pages/signup'))
+const SignInPage = React.lazy(() => import('./pages/signin'))
+const CheckoutPage = React.lazy(() => import('./pages/checkout'))
 
-const App = () => {
+export const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(selectCurrentUser)
 
@@ -41,5 +41,3 @@ const App = () => {
     </>
   )
 }
-
-export default App

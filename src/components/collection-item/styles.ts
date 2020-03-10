@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-type ImageProps = {
+interface ImageProps {
   imageUrl: string
 }
 
-type WrapperProps = {
+interface WrapperProps {
   size?: string
 }
 
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
     }
   }
 
-  &:hover {
+  :hover {
     ${Image} {
       opacity: 0.8;
     }
@@ -53,7 +53,7 @@ export const Wrapper = styled.div`
   @media screen and (max-width: 800px) {
     width: 40vw;
 
-    &:hover {
+    :hover {
       ${Image} {
         opacity: unset;
       }

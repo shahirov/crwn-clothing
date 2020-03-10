@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react'
 
-import CollectionItem from '../collection-item/collection-item'
-import { Wrapper, Items, Title } from './collection-preview.styles'
-import { CollectionItemProp } from '../../slices/shop/slice'
+import { CollectionItem } from '../collection-item'
+import { Wrapper, Items, Title } from './styles'
+import { CollectionItemProp } from '../../features/shop/slice'
 
-type CollectionPreviewProps = {
+interface Props {
   title: string
   items: CollectionItemProp[]
 }
 
-const CollectionPreview: React.FC<CollectionPreviewProps> = ({ title, items }) => {
+export const CollectionPreview = ({ title, items }: Props) => {
   const memoizedItems = useMemo(
     () =>
       items.filter((_, idx) => idx < 4).map((item) => <CollectionItem key={item.id} item={item} />),
@@ -23,4 +23,3 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({ title, items }) =
     </Wrapper>
   )
 }
-export default CollectionPreview

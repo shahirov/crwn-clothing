@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Wrapper, ShoppingIcon, ItemCount } from './cart-icon.styles'
-import { selectCartItemsCount } from '../../slices/cart/selectors'
-import { toggleCartHidden } from '../../slices/cart/slice'
+import { Wrapper, ShoppingIcon, ItemCount } from './styles'
+import { selectCartItemsCount } from '../../features/cart/selectors'
+import { toggleCartHidden } from '../../features/cart/slice'
 
-const CartIcon = () => {
+export const CartIcon = () => {
   const dispatch = useDispatch()
   const totalQuantity = useSelector(selectCartItemsCount)
 
@@ -18,5 +18,3 @@ const CartIcon = () => {
     </Wrapper>
   )
 }
-
-export default CartIcon

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-type InputLabelProps = {
+interface Props {
   value: string
 }
 
@@ -18,14 +18,14 @@ export const ErrorMsg = styled.div`
   color: #ff0000;
 `
 
-export const InputLabel = styled.label`
-  color: ${(props: InputLabelProps) => (props.value.length > 0 ? 'black' : 'grey')};
-  font-size: ${(props: InputLabelProps) => (props.value.length > 0 ? '12px' : '16px')};
+export const InputLabel = styled.label<Props>`
+  color: ${(props) => (props.value.length > 0 ? 'black' : 'grey')};
+  font-size: ${(props) => (props.value.length > 0 ? '12px' : '16px')};
   font-weight: normal;
   position: absolute;
   pointer-events: none;
   left: 5px;
-  top: ${(props: InputLabelProps) => (props.value.length > 0 ? '-14px' : '10px')};
+  top: ${(props) => (props.value.length > 0 ? '-14px' : '10px')};
   transition: 300ms ease all;
 `
 

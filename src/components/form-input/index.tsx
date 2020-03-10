@@ -1,15 +1,15 @@
 import React from 'react'
 import { useField } from 'formik'
 
-import { Group, Input, InputLabel, ErrorMsg } from './form-input.styles'
+import { Group, Input, InputLabel, ErrorMsg } from './styles'
 
-type FormInputProps = {
+interface Props {
   label?: string
   name: string
   type?: string
 }
 
-const FormInput: React.FC<FormInputProps> = (props) => {
+export const FormInput = (props: Props) => {
   const [field, meta] = useField(props.name)
 
   return (
@@ -22,5 +22,3 @@ const FormInput: React.FC<FormInputProps> = (props) => {
     </Group>
   )
 }
-
-export default FormInput

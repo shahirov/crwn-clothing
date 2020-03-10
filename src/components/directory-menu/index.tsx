@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Wrapper } from './directory-menu.styles'
-import MenuItem from '../menu-item/menu-item'
-import { selectDirectorySections } from '../../slices/directory/selectors'
+import { Wrapper } from './styles'
+import { MenuItem } from '../menu-item'
+import { selectDirectorySections } from '../../features/directory/selectors'
 
-const DirectoryMenu = () => {
+export const DirectoryMenu = () => {
   const sections = useSelector(selectDirectorySections)
 
   return (
@@ -16,4 +16,3 @@ const DirectoryMenu = () => {
     </Wrapper>
   )
 }
-export default DirectoryMenu

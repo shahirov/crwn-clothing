@@ -1,18 +1,18 @@
 import React from 'react'
 
 import imageUrl from './404.png'
-import { ErrorImageContainer, ErrorImageOverlay, ErrorImageText } from './error-boundary.styles'
+import { ErrorImageContainer, ErrorImageOverlay, ErrorImageText } from './styles'
 
 type State = {
   readonly hasError: Error | boolean
 }
 
-class ErrorBoundary extends React.Component<any, State> {
+export class ErrorBoundary extends React.Component<any, State> {
   state = {
     hasError: false
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
+  componentDidCatch(error: Error): void {
     this.setState({ hasError: error || true })
   }
 
@@ -31,5 +31,3 @@ class ErrorBoundary extends React.Component<any, State> {
     return children
   }
 }
-
-export default ErrorBoundary

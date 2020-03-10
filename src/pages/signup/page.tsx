@@ -3,17 +3,10 @@ import { useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
-import {
-  Wrapper,
-  Title,
-  Buttons,
-  SignInTitle,
-  SignInLink,
-  SignInWrapper
-} from './signup-page.styles'
-import FormInput from '../../components/form-input/form-input'
-import CustomButton from '../../components/custom-button/custom-button'
-import { signUpStart } from '../../slices/user/slice'
+import { Wrapper, Title, Buttons, SignInTitle, SignInLink, SignInWrapper } from './styles'
+import { FormInput } from '../../components/form-input'
+import { CustomButton } from '../../components/custom-button'
+import { signUpStart } from '../../features/user/slice'
 
 interface SignUpFormValues {
   displayName: string
@@ -22,7 +15,7 @@ interface SignUpFormValues {
   confirmPassword: string
 }
 
-const SignupPage = () => {
+export const SignupPage = () => {
   const initialValues: SignUpFormValues = {
     displayName: '',
     email: '',
@@ -82,4 +75,3 @@ const SignupPage = () => {
     </Wrapper>
   )
 }
-export default SignupPage

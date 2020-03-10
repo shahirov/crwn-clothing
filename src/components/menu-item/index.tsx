@@ -1,16 +1,16 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Wrapper, ItemContent, ItemSubtitle, ItemTitle, BgImage } from './menu-item.styles'
+import { Wrapper, ItemContent, ItemSubtitle, ItemTitle, BgImage } from './styles'
 
-type MenuItemProps = {
+interface Props {
   title: string
   imageUrl: string
   route: string
   size?: string
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ title, imageUrl, size, route }) => {
+export const MenuItem = ({ title, imageUrl, size, route }: Props) => {
   const history = useHistory()
 
   return (
@@ -23,4 +23,3 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, imageUrl, size, route }) => 
     </Wrapper>
   )
 }
-export default MenuItem

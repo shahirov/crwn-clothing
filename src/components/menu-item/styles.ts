@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
-type WrapperProps = {
+interface WrapperProps {
   size?: string
 }
 
-type BgImageProps = {
+interface BgImageProps {
   imageUrl: string
 }
 
-export const BgImage = styled.div`
+export const BgImage = styled.div<BgImageProps>`
   width: 100%;
   height: 100%;
-  background-image: ${(props: BgImageProps) => `url(${props.imageUrl})`};
+  background-image: ${(props) => `url(${props.imageUrl})`};
   background-position: center;
   background-size: cover;
 `
@@ -29,9 +29,9 @@ export const ItemContent = styled.div`
   opacity: 0.7;
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<WrapperProps>`
   min-width: 30%;
-  height: ${(props: WrapperProps) => (props.size === 'large' ? '380px' : '240px')};
+  height: ${(props) => (props.size === 'large' ? '380px' : '240px')};
   flex: 1 1 auto;
   display: flex;
   align-items: center;

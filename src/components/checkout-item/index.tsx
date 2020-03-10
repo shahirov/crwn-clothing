@@ -11,14 +11,14 @@ import {
   RemoveButton,
   Arrow,
   Value
-} from './checkout-item.styles'
-import { clearItemFromCart, addItem, removeItem, CartItem } from '../../slices/cart/slice'
+} from './styles'
+import { clearItemFromCart, addItem, removeItem, CartItem } from '../../features/cart/slice'
 
-type CheckoutItemProps = {
+interface Props {
   item: CartItem
 }
 
-const CheckoutItem: React.FC<CheckoutItemProps> = ({ item }) => {
+export const CheckoutItem = ({ item }: Props) => {
   const dispatch = useDispatch()
 
   const { name, price, quantity, imageUrl } = item
@@ -45,5 +45,3 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ item }) => {
     </Wrapper>
   )
 }
-
-export default CheckoutItem

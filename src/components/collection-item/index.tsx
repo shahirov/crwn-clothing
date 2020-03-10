@@ -1,17 +1,17 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { Wrapper, Image, Footer, Name, Price } from './collection-item.styles'
-import CustomButton from '../custom-button/custom-button'
-import { addItem } from '../../slices/cart/slice'
-import { CollectionItemProp } from '../../slices/shop/slice'
+import { Wrapper, Image, Footer, Name, Price } from './styles'
+import { CustomButton } from '../custom-button'
+import { addItem } from '../../features/cart/slice'
+import { CollectionItemProp } from '../../features/shop/slice'
 
-type CollectionItemProps = {
+interface Props {
   item: CollectionItemProp
   size?: 'large' | 'small' | 'default'
 }
 
-const CollectionItem: React.FC<CollectionItemProps> = ({ item, size }) => {
+export const CollectionItem = ({ item, size }: Props) => {
   const dispatch = useDispatch()
 
   const { name, price, imageUrl } = item
@@ -33,5 +33,3 @@ const CollectionItem: React.FC<CollectionItemProps> = ({ item, size }) => {
     </Wrapper>
   )
 }
-
-export default CollectionItem
