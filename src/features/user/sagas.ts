@@ -1,6 +1,11 @@
 import { takeLatest, put, call, all } from 'redux-saga/effects'
 
-import { firebase } from '../../lib/firebase'
+import {
+  auth,
+  googleProvider,
+  createUserProfileDocument,
+  getCurrentUser
+} from '../../lib/firebase/utils'
 import { AuthUser } from '../../lib/types'
 import { User } from 'firebase'
 import {
@@ -23,7 +28,7 @@ interface SnapshotData {
 
 function* getSnapshotFromUserAuth(userAuth: User | AuthUser, metadata?: { displayName: string }) {
   try {
-    const userRef = yield call(firebase.createUserProfileDocument, userAuth, metadata)
+    const userRef = yield call(createUserProfileDocument, userAuth, metadata)
     const userSnapshot = yield userRef.get()
     const { displayName, email, createdAt } = userSnapshot.data() as SnapshotData
     yield put(
@@ -41,7 +46,7 @@ function* getSnapshotFromUserAuth(userAuth: User | AuthUser, metadata?: { displa
 
 function* isUserAuthenticated() {
   try {
-    const userAuth = yield firebase.getCurrentUser()
+    const userAuth = yield getCurrentUser()
     if (!userAuth) return
     yield getSnapshotFromUserAuth(userAuth)
   } catch (error) {
@@ -51,7 +56,7 @@ function* isUserAuthenticated() {
 
 function* signInWithGoogle() {
   try {
-    const { user } = yield firebase.signInWithGoogle()
+    const { user } = yield auth.signInWithPopup(googleProvider)
     yield getSnapshotFromUserAuth(user)
   } catch (error) {
     yield put(signFailure(error.message))
@@ -60,7 +65,7 @@ function* signInWithGoogle() {
 
 function* signInWithEmailAndPassword({ payload }: ReturnType<typeof emailSignInStart>) {
   try {
-    const { user } = yield firebase.auth.signInWithEmailAndPassword(payload.email, payload.password)
+    const { user } = yield auth.signInWithEmailAndPassword(payload.email, payload.password)
     yield getSnapshotFromUserAuth(user)
   } catch (error) {
     yield put(signFailure(error.message))
@@ -69,7 +74,7 @@ function* signInWithEmailAndPassword({ payload }: ReturnType<typeof emailSignInS
 
 function* signOut() {
   try {
-    yield firebase.auth.signOut()
+    yield auth.signOut()
     yield put(signOutSuccess())
   } catch (error) {
     yield put(signFailure(error.message))
@@ -78,7 +83,7 @@ function* signOut() {
 
 function* signUp({ payload: { email, password, displayName } }: ReturnType<typeof signUpStart>) {
   try {
-    const { user } = yield firebase.auth.createUserWithEmailAndPassword(email, password)
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password)
     yield put(
       signUpSuccess({
         user: user,
